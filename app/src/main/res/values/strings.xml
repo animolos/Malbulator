@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Malbulator</string>
+    <string name="main_button">Square a number</string>
+    <string name="back_button">Go back</string>
+    <string name="count">0</string>
+    <string name="square">0</string>
+</resources>
