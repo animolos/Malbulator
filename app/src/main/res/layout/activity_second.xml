@@ -8,7 +8,7 @@
     tools:context=".SecondActivity">
 
     <Button
-        android:id="@+id/btnFinishActivity"
+        android:id="@+id/btn_go_back"
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:text="@string/back_button"
@@ -19,10 +19,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSquare" />
+        app:layout_constraintTop_toBottomOf="@+id/text_square" />
 
     <TextView
-        android:id="@+id/textSquare"
+        android:id="@+id/text_square"
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="100dp"
         android:layout_height="100dp"

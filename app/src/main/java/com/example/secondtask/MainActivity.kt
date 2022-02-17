@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.secondtask.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,18 +13,23 @@ class MainActivity : AppCompatActivity() {
         const val NUMBER = "number"
     }
 
-    private var count = 0
+    private var number = 0
         set(value) {
             field = value
-            textCount.text = value.toString()
+            binding.textNumber.text = value.toString()
         }
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         Log.i("MyTag", "MainActivity.onCreate")
 
-        btnStartSecondActivity.setOnClickListener {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        binding.btnSquareNumber.setOnClickListener {
             startSecondActivity()
         }
     }
@@ -34,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             this,
             SecondActivity::class.java
         ).apply {
-            putExtra(SecondActivity.SQUARE, count * count)
+            putExtra(SecondActivity.SQUARE, number * number)
         }
 
         startActivity(intent)
@@ -43,19 +48,19 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.i("MyTag", "MainActivity.onSaveInstanceState")
-        outState.putInt(NUMBER, count)
+        outState.putInt(NUMBER, number)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.i("MyTag", "MainActivity.onRestoreInstanceState")
-        count = savedInstanceState.getInt(NUMBER, 0)
+        number = savedInstanceState.getInt(NUMBER, 0)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         Log.i("MyTag", "MainActivity.onConfigurationChanged")
-        count++
+        number++
     }
 
     override fun onStart() {

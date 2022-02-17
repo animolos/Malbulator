@@ -3,7 +3,7 @@ package com.example.secondtask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_second.*
+import com.example.secondtask.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
 
@@ -11,15 +11,20 @@ class SecondActivity : AppCompatActivity() {
         const val SQUARE = "square"
     }
 
+    private lateinit var binding: ActivitySecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
         Log.i("MyTag", "SecondActivity.onCreate")
 
-        val count = intent.getIntExtra(SQUARE, 0)
-        textSquare.text = count.toString()
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        btnFinishActivity.setOnClickListener {
+        val count = intent.getIntExtra(SQUARE, 0)
+        binding.textSquare.text = count.toString()
+
+        binding.btnGoBack.setOnClickListener {
             finish()
         }
     }
