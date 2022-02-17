@@ -9,6 +9,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val NUMBER = "number"
+    }
+
     private var count = 0
         set(value) {
             field = value
@@ -36,10 +40,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.i("MyTag", "MainActivity.onSaveInstanceState")
+        outState.putInt(NUMBER, count)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.i("MyTag", "MainActivity.onRestoreInstanceState")
+        count = savedInstanceState.getInt(NUMBER, 0)
+    }
+
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         Log.i("MyTag", "MainActivity.onConfigurationChanged")
-
         count++
     }
 
